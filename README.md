@@ -1,1 +1,2 @@
-# -IS2018-1-AMR-
+# Nombre: Alan Moreno de la Rosa
+# No. de cuenta: 307235943
