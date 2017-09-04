@@ -35,7 +35,7 @@ public class Controlador {
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView marcadores(ModelMap model){
         List<Marcador> mar = marcador_db.getMarcadores();
-          
+        
         model.addAttribute("marcadores", mar);
         
         return new ModelAndView("inicio",model);
@@ -77,7 +77,6 @@ public class Controlador {
     }
     
     
-    
     /**
      * Actualiza el marcador
      * @param model
@@ -87,17 +86,52 @@ public class Controlador {
     @RequestMapping(value="/actualizaM", method = RequestMethod.GET)
     public ModelAndView actualizaM(ModelMap model,HttpServletRequest request){
         //Aqui va tu codigo
-    
+        Double lat = Double.parseDouble(request.getParameter("latitud"));
+        Double lon = Double.parseDouble(request.getParameter("longitud"));
+        Marcador mar = marcador_db.getMarcador(lat,lon);
+        model.addAttribute("actualizaM", mar);
+        return new ModelAndView("actualizaM",model);
     }
     
     
     @RequestMapping(value="/eliminaMarcador", method = RequestMethod.GET)
     public String eliminaMarcador(HttpServletRequest request){
         //Aqui va tu codigo
+        Double lat = Double.parseDouble(request.getParameter("latitud"));
+        Double lon = Double.parseDouble(request.getParameter("longitud"));
+        Marcador m = marcador_db.getMarcador(lat, lon);
+        marcador_db.eliminar(m);
+        return "redirect:/";
     }
     
     @RequestMapping(value= "/actualizar", method = RequestMethod.POST)
     public String actualizar(HttpServletRequest request){
-        //Aqui va tu codigo   
+        //Aqui va tu codigo
+        int id = Integer.parseInt(request.getParameter("id"));
+        String lat = request.getParameter("latitud");
+        double latitud = 0;
+        if(lat!=null && !lat.equals(""))
+            latitud = Double.parseDouble(lat);
+        String lon = request.getParameter("longitud");
+        double longitud = 0;
+        if(lon!= null && !lon.equals(""))
+            longitud = Double.parseDouble(lon);
+        String n = request.getParameter("nombre");
+        String nombre = "NaN";
+        if(n!=null && !n.equals(""))
+            nombre = n;
+        String d = request.getParameter("descripcion");
+        String descripcion = "NaN";
+        if(d!= null && !d.equals(""))
+            descripcion = d;
+        Marcador ma = marcador_db.getMarcadorId(id);
+        if(ma != null){
+            ma.setLatitud(latitud);
+            ma.setLongitud(longitud);
+            ma.setNombre_m(nombre);
+            ma.setDescripcion(descripcion);
+            marcador_db.guardar(ma);
+        }
+        return "redirect:/";
     }
 }
