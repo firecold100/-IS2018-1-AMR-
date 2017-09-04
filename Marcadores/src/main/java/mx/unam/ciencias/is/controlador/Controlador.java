@@ -100,7 +100,9 @@ public class Controlador {
         Double lat = Double.parseDouble(request.getParameter("latitud"));
         Double lon = Double.parseDouble(request.getParameter("longitud"));
         Marcador m = marcador_db.getMarcador(lat, lon);
-        marcador_db.eliminar(m);
+        if(m!=null){
+            marcador_db.eliminar(m);
+        }
         return "redirect:/";
     }
     
