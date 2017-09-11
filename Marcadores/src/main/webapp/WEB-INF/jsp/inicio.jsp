@@ -42,11 +42,11 @@
                     </thead>
                     <c:forEach var="m" items="${marcadores}">
                         <tbody>
-                            <th>${m.nombre}</th>
+                            <th>${m.nombre_m}</th>
                             <th>${m.latitud}</th>
                             <th>${m.longitud}</th>
                             <th>
-                                <form action="/Ejercicio1-Marcadores/actualizaM" method="GET">
+                                <form action="/Marcadores/actualizaM" method="GET">
                                     <input id="latitud" name="latitud" hidden="true" value="${m.latitud}">
                                     <input id="longitud" name="longitud" hidden="true" value="${m.longitud}">
                                     <button type="submit" class="btn btn-primary btn-lg active">Actualiza</button>
@@ -93,7 +93,7 @@
             
             markerName = [
                 <c:forEach var="s" items="${marcadores}" varStatus="status">
-                "${s.nombre}",
+                "${s.nombre_m}",
                 </c:forEach>];
             
             markerDescr = [

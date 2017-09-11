@@ -28,11 +28,11 @@
             <aside>
                 
                 <form action="/Marcadores/actualizar" method="POST">
-                    <input id="id" name="id" hidden="true" value="${marcador.marcadorid}"><br>
-                    <input id="nombre" name="nombre"   placeholder="${marcador.nombre}"><br>
-                    <input id="latitud" name="latitud" readonly="readonly" placeholder="${marcador.latitud}"><br>
-                    <input id="longitud" name="longitud" readonly="readonly" placeholder="${marcador.longitud}"><br>
-                    <input id="desc" name="desc"  placeholder="${marcador.descripcion}"><br>
+                    <input id="id" name="id" hidden="true" value="${marcador.marcador_id}"><br>
+                    <h>Nombre: </h><input id="nombre" name="nombre"   placeholder="${marcador.nombre_m}"><br>
+                    <h>Latitud: </h><input id="latitud" name="latitud" readonly="readonly" placeholder="${marcador.latitud}"><br>
+                    <h>Longitud: </h><input id="longitud" name="longitud" readonly="readonly" placeholder="${marcador.longitud}"><br>
+                    <h>Descrpción: </h><input id="desc" name="desc"  placeholder="${marcador.descripcion}"><br>
                     <button type="submit" class="btn btn-primary btn-lg active">Actualizame</button>
                 </form>
             </aside>

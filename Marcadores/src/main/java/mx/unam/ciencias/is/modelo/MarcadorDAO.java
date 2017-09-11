@@ -97,8 +97,10 @@ public class MarcadorDAO {
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "FROM Marcador WHERE latitud=:latitud AND longitud=:longitud";
+            String hql = "FROM Marcador WHERE latitud=:lati AND longitud=:longi";
             Query query = session.createQuery(hql);
+            query.setParameter("lati", latitud);
+            query.setParameter("longi", longitud);
             result = (Marcador)query.uniqueResult();
             tx.commit();
         }
@@ -124,8 +126,9 @@ public class MarcadorDAO {
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "FROM Marcador WHERE marcador_id = :id";
+            String hql = "FROM Marcador WHERE marcador_id=:id";
             Query query = session.createQuery(hql);
+            query.setParameter("id", id);
             result = (Marcador)query.uniqueResult();
             tx.commit();
         }
