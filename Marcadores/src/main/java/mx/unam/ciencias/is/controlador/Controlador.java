@@ -64,6 +64,7 @@ public class Controlador {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         Marcador ma = marcador_db.getMarcador(latitud, longitud);
+        System.out.println("Voy a agregar un marcador: "+ma);
         if(ma==null){
             Marcador m  = new Marcador();
             m.setLatitud(latitud);
