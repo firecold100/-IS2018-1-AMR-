@@ -64,7 +64,6 @@ public class Controlador {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         Marcador ma = marcador_db.getMarcador(latitud, longitud);
-        System.out.println("Voy a agregar un marcador: "+ma);
         if(ma==null){
             Marcador m  = new Marcador();
             m.setLatitud(latitud);
@@ -90,7 +89,7 @@ public class Controlador {
         Double lat = Double.parseDouble(request.getParameter("latitud"));
         Double lon = Double.parseDouble(request.getParameter("longitud"));
         Marcador mar = marcador_db.getMarcador(lat,lon);
-        model.addAttribute("actualizaM", mar);
+        model.addAttribute("marcador", mar);
         return new ModelAndView("actualizaM",model);
     }
     
@@ -110,30 +109,19 @@ public class Controlador {
     @RequestMapping(value= "/actualizar", method = RequestMethod.POST)
     public String actualizar(HttpServletRequest request){
         //Aqui va tu codigo
+        
         int id = Integer.parseInt(request.getParameter("id"));
-        String lat = request.getParameter("latitud");
-        double latitud = 0;
-        if(lat!=null && !lat.equals(""))
-            latitud = Double.parseDouble(lat);
-        String lon = request.getParameter("longitud");
-        double longitud = 0;
-        if(lon!= null && !lon.equals(""))
-            longitud = Double.parseDouble(lon);
-        String n = request.getParameter("nombre");
-        String nombre = "NaN";
-        if(n!=null && !n.equals(""))
-            nombre = n;
-        String d = request.getParameter("descripcion");
-        String descripcion = "NaN";
-        if(d!= null && !d.equals(""))
-            descripcion = d;
+        double latitud = Double.parseDouble(request.getParameter("latitud"));
+        double longitud = Double.parseDouble(request.getParameter("longitud"));
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("desc");
         Marcador ma = marcador_db.getMarcadorId(id);
         if(ma != null){
             ma.setLatitud(latitud);
             ma.setLongitud(longitud);
             ma.setNombre_m(nombre);
             ma.setDescripcion(descripcion);
-            marcador_db.guardar(ma);
+            marcador_db.actualizar(ma);
         }
         return "redirect:/";
     }
