@@ -12,6 +12,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Clase que modela un marcador apartir de la tabla marcador
@@ -31,6 +33,9 @@ public class Marcador {
     private double longitud;
     @Column(name = "descripcion")
     private String descripcion;
+    @ManyToOne
+    @JoinColumn(name="usuarioid")
+    private Usuario usuario; //Muchos marcadores tienen sólo un usuario
     //Aqui va tu codigo
     
     /**Nos da el id del marcador
