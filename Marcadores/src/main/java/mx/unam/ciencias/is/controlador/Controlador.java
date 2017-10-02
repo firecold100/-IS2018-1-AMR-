@@ -125,4 +125,12 @@ public class Controlador {
         }
         return "redirect:/";
     }
+    
+    /**
+     * Regresa el nombre del jsp del nuevo inicio.
+     */
+    @RequestMapping(value="/nuevoInicio")
+    public String nuevoInicio(){
+        return "nuevoInicio";
+    }
 }

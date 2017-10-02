@@ -22,11 +22,11 @@ public class UsuarioDAO {
     private SessionFactory sessionFactory;
 
     /**
-     * Método setSession.
+     * Método setSessionFactory.
      * Método para asginar una sesión de conexión de la base de datos.
      * @param session La sesión con la base de datos.
      */
-    public void setSession(SessionFactory session) {
+    public void setSessionFactory(SessionFactory session) {
         this.sessionFactory = session;
     }
     
