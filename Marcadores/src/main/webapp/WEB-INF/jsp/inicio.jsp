@@ -1,7 +1,7 @@
 <%-- 
-    Document   : home-admin
-    Created on : May 2, 2017, 11:17:09 AM
-    Author     : jonathan
+    Document   : inicio
+    Created on : 11/10/2017, 06:09:09 PM
+    Author     : alan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,130 +10,44 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/profile.css"/> ">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/iniciocss.css"/> ">
-        <title>Home</title>
+              <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>Prueba cdss</title>
     </head>
     <body>
         
-        <div class="contenedor">
-            <header>
-                <form action="/Marcadores/agregaMarcador"> 
-                    <button id="btnSes" class="btn btn-primary btn-lg" >Agrega un marcador</button>
-                </form>
-            </header>
-    
-            <section class="main">
-                <div id="mapa"></div>
-            </section>
-            
-            <aside>
-                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Latitud</th>
-                            <th>Longitud</th>
-                            <th>Actualiza</th>
-                        </tr>
-                    </thead>
-                    <c:forEach var="m" items="${marcadores}">
-                        <tbody>
-                            <th>${m.nombre_m}</th>
-                            <th>${m.latitud}</th>
-                            <th>${m.longitud}</th>
-                            <th>
-                                <form action="/Marcadores/actualizaM" method="GET">
-                                    <input id="latitud" name="latitud" hidden="true" value="${m.latitud}">
-                                    <input id="longitud" name="longitud" hidden="true" value="${m.longitud}">
-                                    <button type="submit" class="btn btn-primary btn-lg active">Actualiza</button>
-                                </form> 
-                            </th>
-                       </tbody>
-
-                    </c:forEach>
-                </table>
-            
-            </aside>
-         </div>
-        <script>
-            
-            function ventanaInfo(des,lat,lon,nom) {
-                var coso = '<div id="content">'+
-                           '<div id="siteNotice">'+
-                           '</div>'+
-                            '<h1 id="firstHeading" class="firstHeading">'+nom+'</h1>'+
-                            '<div id="bodyContent">'+
-                             '<p>'+des+'</p>'+
-                             '<form action="/Marcadores/eliminaMarcador" method="GET">'+
-                             '<input id="latitud" name="latitud" hidden="true" value="'+lat+'">'+
-                             '<input id="longitud" name="longitud" hidden="true" value="'+lon+'">'+
-                             '<button type="submit" class="btn btn-primary btn-lg active">Eliminame</button>'+
-                             '</form>' +
-                            '</div>'+
-                           '</div>';   
-                return coso;
-            }
-            
-            var map;
-            function initMap() {
-            
-            
-            markerLat = [
-                <c:forEach var="s" items="${marcadores}" varStatus="status">
-                    <c:out value="${s.latitud}"/>,
-                </c:forEach>];
-            markerLong = [
-                <c:forEach var="s" items="${marcadores}" varStatus="status">
-                <c:out value="${s.longitud}"/>,
-                </c:forEach>];
-            
-            markerName = [
-                <c:forEach var="s" items="${marcadores}" varStatus="status">
-                "${s.nombre_m}",
-                </c:forEach>];
-            
-            markerDescr = [
-                <c:forEach var="s" items="${marcadores}" varStatus="status">
-                "${s.descripcion}",
-                </c:forEach>];
-    
-            map = new google.maps.Map(document.getElementById('mapa'), {
-                center: {lat: 19.323447, lng: -99.179521},
-                zoom: 3
-            });
-    
-            var infowindow = new google.maps.InfoWindow(); 
-            var marker, i;
-
-            for (i = 0; i < markerLat.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(markerLat[i], markerLong[i]),
-                    map: map,
-                    title:markerName[i]
-                });
-
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
-                    infowindow.setContent(ventanaInfo(markerDescr[i],markerLat[i],markerLong[i],markerName[i]));
-                    infowindow.open(map, marker);
-                }})(marker, i));
-            
-    
-            }
-            google.maps.event.addDomListener(window, 'load', initMap);
-        }
         
-        </script>
-        <!-- Latest compiled and minified JavaScript -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCug-PSCy85c1e2cPnPVzRGgdCK8RSMbdg&callback=initMap">
-        </script>
+        <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+	<div class="row panel">
+		<div class="col-md-4 bg_blur ">
+    	    <a href="#" class="follow_btn hidden-xs">Follow</a>
+		</div>
+        <div class="col-md-8  col-xs-12">
+           <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail picture hidden-xs" />
+           <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail visible-xs picture_mob" />
+           <div class="header">
+                <h1>Lorem Ipsum</h1>
+                <h4>Web Developer</h4>
+                <span>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</span>
+           </div>
+        </div>
+    </div>   
+    
+	<div class="row nav">    
+        <div class="col-md-4"></div>
+        <div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
+            <div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i> 16</div>
+            <div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i> 14</div>
+            <div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> 26</div>
+        </div>
+    </div>
+</div>
+        
         
     </body>
 </html>
